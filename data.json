@@ -1,0 +1,25 @@
+{
+    "movies": [
+        {
+            "id": 1,
+            "title": "killer of the Flower Moon",
+            "director": "Martin Scorcese",
+            "runtime": 3.26,
+            "rating": 5
+        },
+        {
+            "id": 2,
+            "title": "killer of the Flower Moon",
+            "director": "Martin Scorcese",
+            "runtime": 3.26,
+            "rating": 5
+        },
+        {
+            "id": 3,
+            "title": "killer of the Flower Moon",
+            "director": "Martin Scorcese",
+            "runtime": 3.26,
+            "rating": 5
+        }
+    ]
+}

@@ -2,6 +2,7 @@ import MovieListItem from "./MovieListItem";
 import "../MovieList.css";
 import { IMovie } from "../TS/interfaces/global_interfaces";
 
+
 interface Props {
     movies: IMovie[];
     err: Error | null;
@@ -9,9 +10,7 @@ interface Props {
 }
 
 
-export default function MovieList({movies, err, handleRating}: Props) {
-
-
+export default function MovieList({movies, err, handleRating}: Props ) {
     {
         if (err !== null) {
             return <div>{err?.message}</div>
@@ -21,7 +20,10 @@ export default function MovieList({movies, err, handleRating}: Props) {
                     {" "}
                     {movies.map((movie): JSX.Element => {
                         return (
-                            <MovieListItem key={movie.id} movie={movie} onRating={handleRating}/>
+                            <MovieListItem
+                                key={movie.id}
+                                movie={movie}
+                                onRating={handleRating} />
                         )
                     })}
                 </div>
@@ -29,3 +31,4 @@ export default function MovieList({movies, err, handleRating}: Props) {
         }
     }
 }
+
