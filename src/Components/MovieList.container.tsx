@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { IMovie } from "../TS/interfaces/global_interfaces";
 import MovieList from "./MovieList";
+import MovieContext from "./MovieContext";
 
 export default function MovieListContainer() {
-    const [movies, setMovies] = useState<IMovie[]>([]);
+    const [movies, setMovies] = useContext(MovieContext);
     const [err, setErr] = useState<Error | null>(null);
 
     const options = {
@@ -22,14 +23,6 @@ export default function MovieListContainer() {
         })();
     }, []);
 
-    const handleRating = (id: number, rating: number): void => {
-        setMovies((prevMovie) => {
-            return prevMovie.map((movie) => {
-                if (movie.id === id) movie.rating = rating;
-                return movie;
-            });
-        });
-    };
 
-    return <MovieList movies={movies} err={err} handleRating={handleRating} />
+    return <MovieList movies={movies!} err={err} />
 }

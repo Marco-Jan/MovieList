@@ -1,13 +1,16 @@
 import MovieList from "./Components/MovieList.container"
+import MoviesProvider from "./Components/MoviesProvider"
+
 
 function App() {
-
   return (
-    <div>
+    <>
       <h1>Move List</h1>
-      <MovieList />
-    </div>
-  )
+      <MoviesProvider>
+        <MovieList /> 
+      </ MoviesProvider>
+    </>
+  );
 }
 
 export default App

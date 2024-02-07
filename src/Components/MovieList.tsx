@@ -6,11 +6,9 @@ import { IMovie } from "../TS/interfaces/global_interfaces";
 interface Props {
     movies: IMovie[];
     err: Error | null;
-    handleRating: (id: number, rating: number) => void;
 }
 
-
-export default function MovieList({movies, err, handleRating}: Props ) {
+export default function MovieList({ movies, err }: Props) {
     {
         if (err !== null) {
             return <div>{err?.message}</div>
@@ -23,7 +21,7 @@ export default function MovieList({movies, err, handleRating}: Props ) {
                             <MovieListItem
                                 key={movie.id}
                                 movie={movie}
-                                onRating={handleRating} />
+                             />
                         )
                     })}
                 </div>
