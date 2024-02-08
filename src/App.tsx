@@ -1,4 +1,4 @@
-import MovieList from "./Components/MovieList.container"
+import MovieList from "./Components/MovieList"
 import MoviesProvider from "./Components/MoviesProvider"
 
 
