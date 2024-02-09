@@ -2,6 +2,7 @@ import { StarBorder, Star } from "@mui/icons-material";
 import { IMovie } from "../TS/interfaces/global_interfaces";
 import MovieContext from "./MovieContext";
 import { JSX, useCallback, useContext } from "react";
+import style from "./css/Rating.module.css";
 
 
 interface Props {
@@ -29,7 +30,7 @@ export default function Rating({ item }: Props): JSX.Element[] {
             <div
                 style={{ display: 'inline-block' }}
                 key={i}
-                className="rating-btn"
+                className={style.rating}
                 onClick={() => handlerating(item.id, i + 1)}
                 onMouseOver={() => handlerating(item.id, i + 1)}
             >

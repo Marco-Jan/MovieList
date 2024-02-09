@@ -1,15 +1,15 @@
-* {
+/* * {
     box-sizing: border-box;
     margin: 0;
-}
+} */
 
-.container {
+.moviesContainer {
 padding: 2%;
 display: flex;
 flex-wrap: wrap;
 }
-
-.movie-card {
+/* .movies-container 
+.movie-card  {
     min-width: 25%;
     box-shadow: rgba(0,0,0,0.12) 0px 1px 3px rgba(0,0,0,0.24) 0px 1px 2px;
     margin: 10px;
@@ -17,9 +17,11 @@ flex-wrap: wrap;
     border: 10px solid #e7b917;   
 }
 
+.movies-container 
 .movie-card div {
     margin: 10px 0 5px;
 }
-h2,h5 {
+
+.movies-container h2 .movies-container h5 {
     line-height: 2rem;
-}
+} */
