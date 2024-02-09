@@ -11,12 +11,12 @@ export default function useMovies() {
     useEffect(() => {
         const options = {
             method: "GET",
-            headers: { "Content-Type": "application/json" }
+            headers: { "Content-Type": "application/json" },
         };
 
         (async () => {
             try {
-                const data = await fetch(`http://localhost:5000/movies`, options);
+                const data = await fetch(`/movies`, options);
                 setMovies((await data.json()) as IMovie[]);
             } catch (error) {
                 setErr(error as Error);
@@ -29,9 +29,9 @@ export default function useMovies() {
             method: "DELETE",
         };
 
-        const res = await fetch(`http://localhost:5000/movies/${movie.id}`, options);
+        const res = await fetch(`/movies/${movie.id}`, options);
         if (res.ok) {
-            setMovies((prevMovies) => prevMovies.filter((prevMovie) => prevMovie.id !== movie.id));
+            setMovies((prevMovie) => prevMovie.filter((prevMovie) => prevMovie.id !== movie.id));
 
         }
     }

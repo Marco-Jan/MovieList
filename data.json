@@ -1,25 +1,25 @@
 {
-    "movies": [
-        {
-            "id": 1,
-            "title": "Killer of the Flower Moon",
-            "director": "Martin Scorcese",
-            "runtime": 3.26,
-            "rating": 2
-        },
-        {
-            "id": 2,
-            "title": "Transformer : Die Rache",
-            "director": "Michael Bay",
-            "runtime": 2.26,
-            "rating": 5
-        },
-        {
-            "id": 3,
-            "title": "Inception",
-            "director": "Christian Nolan",
-            "runtime": 3.21,
-            "rating": 5
-        }
-    ]
+  "movies": [
+    {
+      "id": "1",
+      "title": "Transformer : Die Rache",
+      "director": "Michael Bay",
+      "runtime": 2.26,
+      "rating": 5
+    },
+    {
+      "id": "2",
+      "title": "Transformer 1 ",
+      "director": "Michael Bay",
+      "runtime": 2.19,
+      "rating": 4
+    },
+    {
+      "id": "3",
+      "title": "Inception",
+      "director": "Christopher Nolan",
+      "runtime": 1.26,
+      "rating": 5
+    }
+  ]
 }

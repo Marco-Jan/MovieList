@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export default function MovieList() {
     const [movies, err, handleDelete] = useMovies();
-    const [filter, setFilter] = useState<string>("");
+    const [filter, setFilter] = useState("");
     {
         if (err !== null) {
             return <Container>{(err as Error).message}</Container>
