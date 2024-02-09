@@ -6,12 +6,14 @@ export default function useMovies() {
     const [movies, setMovies] = useContext(MovieContext);
     const [err, setErr] = useState<Error | null>(null);
 
-    const options = {
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-    }
+
 
     useEffect(() => {
+        const options = {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        };
+
         (async () => {
             try {
                 const data = await fetch(`http://localhost:5000/movies`, options);
@@ -22,6 +24,18 @@ export default function useMovies() {
         })();
     }, [setMovies]);
 
+    async function handleDelete(movie: IMovie) {
+        const options = {
+            method: "DELETE",
+        };
 
-    return [movies, err];
+        const res = await fetch(`http://localhost:5000/movies/${movie.id}`, options);
+        if (res.ok) {
+            setMovies((prevMovies) => prevMovies.filter((prevMovie) => prevMovie.id !== movie.id));
+
+        }
+    }
+
+
+    return [movies, err, handleDelete];
 }
