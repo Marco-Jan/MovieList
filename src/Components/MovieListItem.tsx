@@ -7,7 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 interface Props {
     movie: IMovie;
-    onDelete: (movie: IMovie) => Promise<void>;
+    onDialog: (open: boolean, movie: IMovie) => void;
 }
 interface Props {
     movie: {
@@ -18,7 +18,7 @@ interface Props {
         rating: number;
     }
 }
-export default function MovieListItem({ movie, onDelete }: Props) {
+export default function MovieListItem({ movie, onDialog }: Props) {
     const classNames = [style.movieCard];
     if (movie.rating === 5) {
         classNames.push(style.fiveStars);
@@ -41,7 +41,7 @@ export default function MovieListItem({ movie, onDelete }: Props) {
                     </div>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton color="primary" aria-label="delete-movie" onClick={() => onDelete(movie)}>
+                    <IconButton color="primary" aria-label="delete-movie" onClick={() => onDialog(true, movie)}>
                         <DeleteIcon />
                     </IconButton>
                 </CardActions>

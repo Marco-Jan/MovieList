@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { IMovie } from "../TS/interfaces/global_interfaces";
 import MovieContext from "./MovieContext";
 
+
 export default function useMovies() {
     const [movies, setMovies] = useContext(MovieContext);
     const [err, setErr] = useState<Error | null>(null);
@@ -36,6 +37,19 @@ export default function useMovies() {
         }
     }
 
+    async function handleAdd(movie: IMovie): Promise<void> {
+        const options = {
+            method: "POST",
+            body: JSON.stringify(movie),
+            headers: { "Content-Type": "application/json" },
+           
+        };
 
-    return [movies, err, handleDelete];
+        const res = await fetch(`/movies`, options);
+        const data = await res.json();
+        setMovies((prevMovie) => [...prevMovie, data]);
+    }
+
+
+    return [movies, err, handleDelete, handleAdd];
 }
