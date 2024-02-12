@@ -69,5 +69,5 @@ export default function useMovies() {
         }
     }
 
-    return { movies, err, handleDelete, handleAdd };
+    return [ movies, err, handleDelete, handleAdd ];
 }

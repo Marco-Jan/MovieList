@@ -49,8 +49,7 @@ export default function MovieListItem({ movie, onDialog, onEdit }: Props) {
                     <IconButton
                         color="primary"
                         aria-label="edit-movie"
-                        onClick={() => onEdit(true, movie)}
-                    >
+                        onClick={() => onEdit(true, movie)}>
                         <Edit />
                     </IconButton>
                 </CardActions>

@@ -11,7 +11,7 @@ import FormEdit from "./FormEdit";
 
 
 export default function MovieList() {
-    const [movies, err, handleDelete, handleSubmit] = useMovies();
+    const [movies, err, handleDelete, handleAdd] = useMovies();
     const [filter, setFilter] = useState("");
     const [deleteDialog, setDeleteDialog] = useState<{ open: boolean; movie: IMovie | null }>({ open: false, movie: null });
     const [formDialog, setFormDialog] = useState<{
@@ -34,8 +34,7 @@ export default function MovieList() {
             setFormDialog({ open: false, movie: undefined });
         }
     };
-
-
+    
     {
         if (err !== null) {
             return <Container>{(err as Error).message}</Container>
@@ -84,7 +83,7 @@ export default function MovieList() {
                     <FormEdit
                         onSave={(movie: MovieInput) => {
                             setFormDialog({open: false, movie: undefined});
-                            (handleSubmit as (movie: MovieInput) => Promise<void>)(movie);
+                            (handleAdd as (movie: MovieInput) => Promise<void>)(movie);
                         }}
                         open={formDialog.open}
                         onClose={() => setFormDialog({ open: false, movie: undefined })}
