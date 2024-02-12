@@ -68,6 +68,6 @@ export default function FormEdit({ open, onSave, onClose, movie = { title: "", d
         </Dialog>
 
 
-                );
+    );
 }
 
