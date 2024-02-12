@@ -12,9 +12,7 @@ interface Props {
     onClose: () => void;
 }
 
-
-
-export default function FormEdit({ open, onSave, onClose, movie = { title: "", director: "", runtime: 0 } }: Props): JSX.Element {
+export default function FormEdit({ onSave, open, onClose, movie = { title: "", director: "", runtime: 0 } }: Props): JSX.Element {
     const {
         register,
         handleSubmit,
@@ -68,6 +66,6 @@ export default function FormEdit({ open, onSave, onClose, movie = { title: "", d
         </Dialog>
 
 
-                );
+    );
 }
 
