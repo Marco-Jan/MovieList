@@ -14,7 +14,9 @@ export default function MovieList() {
     const [movies, err, handleDelete, handleSubmit] = useMovies();
     const [filter, setFilter] = useState("");
     const [deleteDialog, setDeleteDialog] = useState<{ open: boolean; movie: IMovie | null }>({ open: false, movie: null });
-    const [formDialog, setFormDialog] = useState(false);
+    const [formDialog, setFormDialog] = useState<{
+        open: boolean; movie?: IMovie
+    }>({ open: false });
 
     const handleDialog = (open: boolean, movie: IMovie) => {
         if (open) {
@@ -23,6 +25,14 @@ export default function MovieList() {
             setDeleteDialog({ open: false, movie: null });
         }
     };
+
+    const handleEditDialog = (open: boolean, movie: IMovie) => {
+        if (open) {
+            setFormDialog({ open: true, movie });
+        } else {
+            setFormDialog({open: false, movie: undefined})
+        }
+    }
 
 
     {
@@ -51,6 +61,8 @@ export default function MovieList() {
                                         key={movie.id}
                                         movie={movie}
                                         onDialog={handleDialog}
+                                        onEdit={handleEditDialog}
+
                                     />
                                 )
                             })}
@@ -71,16 +83,16 @@ export default function MovieList() {
                     </DeleteDialog>
                     <FormEdit
                         onSave={(movie: MovieInput) => {
-                            setFormDialog(false);
+                            setFormDialog({open: false, movie: undefined});
                             (handleSubmit as (movie: MovieInput) => Promise<void>)(movie);
                         }}
-                        open={formDialog}
-                        onClose={() => setFormDialog(false)}
+                        open={formDialog.open}
+                        onClose={() => setFormDialog({open: false, movie: undefined})}
                     />
                     <Fab
                         color="primary"
                         sx={{ position: "fixed", bottom: "10%", right: "50%", Transform: "translateX(-50%)", }}
-                        onClick={() => setFormDialog(true)}>
+                        onClick={() => setFormDialog({open: true, movie: undefined})}>
                         <Add />
                     </Fab>
                 </Container >
