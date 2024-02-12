@@ -1,13 +1,15 @@
 import { IMovie } from "../TS/interfaces/global_interfaces";
 import Rating from "./Rating";
 import style from "./css/MovieListItem.module.css";
-import { Card, CardContent, Grid, Typography, CardActions, IconButton } from "@mui/material";
+import { Card, CardContent, Grid, Typography, CardActions, IconButton, Icon } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { Edit } from "@mui/icons-material"
 
 
 interface Props {
     movie: IMovie;
     onDialog: (open: boolean, movie: IMovie) => void;
+    onEdit: (open: boolean, mocvie: IMovie) => void;
 }
 interface Props {
     movie: {
@@ -18,7 +20,7 @@ interface Props {
         rating: number;
     }
 }
-export default function MovieListItem({ movie, onDialog }: Props) {
+export default function MovieListItem({ movie, onDialog, onEdit }: Props) {
     const classNames = [style.movieCard];
     if (movie.rating === 5) {
         classNames.push(style.fiveStars);
@@ -43,6 +45,13 @@ export default function MovieListItem({ movie, onDialog }: Props) {
                 <CardActions disableSpacing>
                     <IconButton color="primary" aria-label="delete-movie" onClick={() => onDialog(true, movie)}>
                         <DeleteIcon />
+                    </IconButton>
+                    <IconButton
+                        color="primary"
+                        aria-label="edit-movie"
+                        onClick={() => onEdit(true, movie)}
+                    >
+                        <Edit />
                     </IconButton>
                 </CardActions>
             </Card>
