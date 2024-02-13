@@ -1,42 +1,41 @@
 import { StarBorder, Star } from "@mui/icons-material";
 import { IMovie } from "../TS/interfaces/global_interfaces";
+import { useCallback, useContext } from "react";
 import MovieContext from "./MovieContext";
-import { JSX, useCallback, useContext } from "react";
-import style from "./css/Rating.module.css";
-
+import style from "./css/Rating.module.css"
 
 interface Props {
-    item: IMovie;
+  item: IMovie;
 }
 
 export default function Rating({ item }: Props): JSX.Element[] {
-    const [, setMovies] = useContext(MovieContext) //import only setter Funktion
+  const [, setMovies] = useContext(MovieContext);
 
-    const handlerating = useCallback(
-        (id: number, rating: number): void => {
-            setMovies((prevMovie: IMovie[]) => {
-                return prevMovie.filter((movie) => {
-                    if (movie.id === id) movie.rating = rating;
-                    return movie;
-                });
-            });
-        },
-        [setMovies]
+  // Handle rating function
+  const handleRating = useCallback(
+    (id: number, rating: number): void => {
+    setMovies((prevMovie: IMovie[]) => {
+      return prevMovie.filter((movie) => {
+        if (movie.id === id) movie.rating = rating;
+        return movie;
+      });
+    });
+  },
+  [setMovies]
+  )
+
+  const ratings: JSX.Element[] = [];
+  for (let i = 0; i < 5; i++) {
+    ratings.push(
+      <div
+        key={i}
+        className={style.rating}
+        onClick={() => handleRating(item.id, i + 1)}
+        onMouseOver={() => handleRating(item.id, i + 1)}
+      >
+        {item.rating > i ? <Star /> : <StarBorder />}
+      </div>
     );
-
-    const ratings: JSX.Element[] = [];
-    for (let i = 0; i < 5; i++) {
-        ratings.push(
-            <div
-                style={{ display: 'inline-block' }}
-                key={i}
-                className={style.rating}
-                onClick={() => handlerating(item.id, i + 1)}
-                onMouseOver={() => handlerating(item.id, i + 1)}
-            >
-                {item.rating > i ? <Star /> : <StarBorder />}
-            </div>
-        );
-    }
-    return ratings;
+  }
+  return ratings;
 }
