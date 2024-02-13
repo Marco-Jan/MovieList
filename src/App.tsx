@@ -40,13 +40,7 @@ function App() {
       <StyledDiv color="coral">
         <Button>Click Me</Button>
       </StyledDiv>
-      <FormEdit onSave={(movie) => console.log(movie)} editMovie={{
-        id: 9,
-        title: "Best Film ever",
-        director: "Best Director ever",
-        runtime: 300,
-        rating: 5,
-      }} />
+  
     </>
   );
 }

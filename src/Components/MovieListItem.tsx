@@ -12,7 +12,7 @@ interface Props {
 }
 interface Props {
   movie: {
-    id: number;
+    id: string;
     title: string;
     director: string;
     runtime: number;

@@ -21,6 +21,7 @@ export default function MovieList() {
   const [formDialog, setFormDialog] = useState<{
     open: boolean;
     movie?: IMovie;
+    isEdit?: boolean;
   }>({open: false});
 
   const handleDialog = (open: boolean, movie: IMovie) => {
@@ -80,8 +81,8 @@ export default function MovieList() {
           ></DeleteDialog>
           <FormEdit
             onSave={(movie: MovieInput) => {
-              setFormDialog({open: false, movie: undefined});
-              (handleSubmit as (movie: MovieInput) => Promise<void>)(movie)
+              setFormDialog({open: false, movie: undefined, isEdit: true});
+              (handleSubmit as (movie: MovieInput, isEdit: boolean) => Promise<void>)(movie, formDialog.isEdit!)
             }}
             open={formDialog.open}
             onClose={() => setFormDialog({open: false, movie: undefined})}
@@ -89,7 +90,7 @@ export default function MovieList() {
           />
           <Fab
             color="primary"
-            onClick={() => setFormDialog({open: true, movie: undefined})}
+            onClick={() => setFormDialog({open: true, movie: undefined, isEdit: false})}
             sx={{
               position: "fixed",
               right: "50%",

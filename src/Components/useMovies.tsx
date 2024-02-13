@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { IMovie } from "../TS/interfaces/global_interfaces";
 import MovieContext from "./MovieContext";
 
+
 export default function useMovies() {
   const [movies, setMovies] = useContext(MovieContext);
   const [err, setErr] = useState<Error | null>(null);
@@ -13,7 +14,7 @@ export default function useMovies() {
     };
     const connect = async () => {
       try {
-        const data = await fetch("http://localhost:5000/movies", options);
+        const data = await fetch("/movies", options);
         if (!data.ok) {
           throw new Error("Sorry, we couldn't connect to our server!");
         }
@@ -29,7 +30,7 @@ export default function useMovies() {
     const options = {
       method: "DELETE"
     };
-    const res = await fetch(`http://localhost:5000/movies/${movie.id}`, options);
+    const res = await fetch(`/movies/${movie.id}`, options);
     if (res.ok) {
       setMovies(prevMovie => 
         prevMovie.filter(prevMovie => prevMovie.id !== movie.id)
@@ -37,14 +38,17 @@ export default function useMovies() {
     }
   }
 
-  async function handleAdd(movie: IMovie): Promise<void> {
+  async function handleAdd(movie: IMovie, isEdit: boolean = true): Promise<void> {
     let method = "POST";
-    let url = "http://localhost:5000/movies";
-    if(movie.id) {
+    let url = "/movies";
+    console.log(isEdit, "isEdit");
+    if(isEdit) {
       method = "PUT";
-      url += `/${movie.id}`
+      url += `/${movie.id}`;
     }
-
+    if(!isEdit) {
+        movie.id = Math.random().toString(); 
+    }
     const options = {
       method,
       body: JSON.stringify(movie),
@@ -53,10 +57,10 @@ export default function useMovies() {
 
     const res = await fetch(url, options);
     const data = await res.json();
-    if (movie.id) {
+    if (isEdit) {
       setMovies(prevMovies => 
         prevMovies?.map(prevMovie => {
-          if (prevMovie.id === movie.id) {
+          if (prevMovie.id == movie.id) {
             return data;
           }
           return prevMovie

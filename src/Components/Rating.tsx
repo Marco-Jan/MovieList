@@ -13,7 +13,7 @@ export default function Rating({ item }: Props): JSX.Element[] {
 
   // Handle rating function
   const handleRating = useCallback(
-    (id: number, rating: number): void => {
+    (id: string, rating: number): void => {
     setMovies((prevMovie: IMovie[]) => {
       return prevMovie.filter((movie) => {
         if (movie.id === id) movie.rating = rating;
